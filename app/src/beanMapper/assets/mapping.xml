@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean-mappings>
+    <bean-mapping src="com.devindi.mapper.demo.model.complex.Order" target="com.devindi.mapper.demo.dto.complex.OrderDto">
+        <property-mapping src="customer.name" target="customerName"/>
+
+    </bean-mapping>
+</bean-mappings>
