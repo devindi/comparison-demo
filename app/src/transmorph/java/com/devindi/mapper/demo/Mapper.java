@@ -28,57 +28,8 @@ public class Mapper {
     private final Transmorph transmorph;
 
     public Mapper() {
-
-        IConverter immutablePersonConverter = new AbstractConverter() {
-            @Override
-            public Object doConvert(ConversionContext context, Object sourceObject, TypeReference<?> destinationType) throws ConverterException {
-                Person person = (Person) sourceObject;
-                return new ImmutablePerson(person.getName(), person.getFriends());
-            }
-
-            @Override
-            protected boolean canHandleDestinationType(TypeReference<?> destinationType) {
-                return destinationType.hasRawType(ImmutablePerson.class);
-            }
-
-            @Override
-            protected boolean canHandleSourceObject(Object sourceObject) {
-                return sourceObject.getClass().equals(Person.class);
-            }
-        };
-        IConverter orderConverter = new AbstractConverter() {
-            @Override
-            public Object doConvert(ConversionContext context, Object sourceObject, TypeReference<?> destinationType) throws ConverterException {
-                Order order = (Order) sourceObject;
-                //Built-in collection converter converts only first item and I don't know how to fix it.
-                //it tries to convert string to string with bean-to-bean converter
-                //List<ProductDto> dtos = transmorph.convert(order.getProducts(), new TypeReference<List<ProductDto>>() {});
-                List<ProductDto> productDtos = new ArrayList<>();
-                for (Product product : order.getProducts()) {
-                    productDtos.add(new ProductDto(product.getTitle()));
-                }
-                return new OrderDto(
-                        order.getCustomer().getName(),
-                        order.getCustomer().getBillingAddress().getCity(),
-                        order.getCustomer().getBillingAddress().getStreet(),
-                        order.getCustomer().getShippingAddress().getCity(),
-                        order.getCustomer().getShippingAddress().getStreet(),
-                        productDtos
-                );
-            }
-
-            @Override
-            protected boolean canHandleDestinationType(TypeReference<?> destinationType) {
-                return destinationType.hasRawType(OrderDto.class);
-            }
-
-            @Override
-            protected boolean canHandleSourceObject(Object sourceObject) {
-                return sourceObject.getClass().equals(Order.class);
-            }
-        };
         DefaultConverters defaultConverters = new DefaultConverters();
-        transmorph = new Transmorph(defaultConverters, immutablePersonConverter, orderConverter);
+        transmorph = new Transmorph(defaultConverters);
         BeanToBeanMapping productMapping = new BeanToBeanMapping(Product.class, ProductDto.class);
         productMapping.addMapping("title", "name");
         BeanToBeanMapping personMapping = new BeanToBeanMapping(Person.class, PersonDto.class);

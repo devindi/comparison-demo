@@ -33,7 +33,6 @@ import java.util.Map;
 public class Mapper {
 
     private final BeanMapper personToUser;
-    private final BeanMapper personToImmutable;
     private final BeanMapper commons;
 
     public Mapper() {
@@ -44,26 +43,6 @@ public class Mapper {
         userMapping.setTargetClass(UserDto.class);
         userMapping.setSourceClass(Person.class);
         personToUser.addBeanMapping(userMapping);
-
-        personToImmutable = new BeanMapper();
-        BeanMapping immutableMapping = new BeanMapping();
-        immutableMapping.setBeanCreator(new BeanCreator() {
-            @Override
-            public Object createBean(Class aClass, MappingContext mappingContext) throws InstantiationException, IllegalAccessException {
-                try {
-                    Constructor constructor = aClass.getConstructors()[0];
-                    Object sourceObject = mappingContext.peekSourceObject();
-
-                    //we should map source props to newInstance params
-                    return constructor.newInstance("John", Arrays.asList("Mycroft", "Sherlock"));
-                } catch (InvocationTargetException e) {
-                    throw new InstantiationException(e.getMessage());
-                }
-            }
-        });
-        immutableMapping.setSourceClass(Person.class);
-        immutableMapping.setTargetClass(ImmutablePerson.class);
-        personToImmutable.addBeanMapping(immutableMapping);
 
         commons = new BeanMapper();
     }
@@ -93,11 +72,7 @@ public class Mapper {
     }
 
     public ImmutablePerson toImmutable(Person person) {
-        try {
-            return (ImmutablePerson) personToImmutable.map(person);
-        } catch (BeanMappingException e) {
-            throw new RuntimeException(e);
-        }
+        return null;
     }
 
     private PropertyMapping createPropertyMapping(String source, String target) {

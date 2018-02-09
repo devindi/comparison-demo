@@ -24,54 +24,6 @@ public class Mapper {
     public Mapper() {
         morpherRegistry = new MorpherRegistry();
         MorphUtils.registerStandardMorphers(morpherRegistry);
-
-        morpherRegistry.registerMorpher(new AbstractObjectMorpher() {
-            @Override
-            public Object morph(Object value) {
-                Order order = (Order) value;
-                List<ProductDto> productDtos = new ArrayList<>();
-                for (Product product : order.getProducts()) {
-                    productDtos.add(new ProductDto(product.getTitle()));
-                }
-                return new OrderDto(
-                        order.getCustomer().getName(),
-                        order.getCustomer().getBillingAddress().getCity(),
-                        order.getCustomer().getBillingAddress().getStreet(),
-                        order.getCustomer().getShippingAddress().getCity(),
-                        order.getCustomer().getShippingAddress().getStreet(),
-                        productDtos
-                );
-            }
-
-            @Override
-            public Class<?> morphsTo() {
-                return OrderDto.class;
-            }
-        });
-        morpherRegistry.registerMorpher(new AbstractObjectMorpher() {
-            @Override
-            public Object morph(Object value) {
-                Person person = (Person) value;
-                return new ImmutablePerson(person.getName(), person.getFriends());
-            }
-
-            @Override
-            public Class<?> morphsTo() {
-                return ImmutablePerson.class;
-            }
-        });
-        morpherRegistry.registerMorpher(new AbstractObjectMorpher() {
-            @Override
-            public Object morph(Object value) {
-                Person person = (Person) value;
-                return new UserDto(person.getName(), person.getFriends());
-            }
-
-            @Override
-            public Class<?> morphsTo() {
-                return UserDto.class;
-            }
-        });
         morpherRegistry.registerMorpher(new BeanMorpher(PersonDto.class, morpherRegistry));
     }
 

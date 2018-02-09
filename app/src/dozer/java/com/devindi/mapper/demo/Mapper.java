@@ -67,17 +67,4 @@ public class Mapper {
             }
         };
     }
-
-    @SuppressWarnings("unused")
-    public static class ImmutablePersonFactory implements BeanFactory {
-
-        @Override
-        public Object createBean(Object source, Class<?> sourceClass, String targetBeanId) {
-            if (source instanceof Person) {
-                Person person = (Person) source;
-                return new ImmutablePerson(person.getName(), person.getFriends());
-            }
-            return null;
-        }
-    }
 }

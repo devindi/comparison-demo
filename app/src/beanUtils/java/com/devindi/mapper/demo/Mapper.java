@@ -20,43 +20,8 @@ import java.util.List;
 public class Mapper {
 
     public Mapper() {
-        Converter orderConverter = new Converter() {
-            @Override
-            public Object convert(Class aClass, Object o) {
-                Order order = (Order) o;
-                List<ProductDto> productDtos = new ArrayList<>();
-                for (Product product : order.getProducts()) {
-                    productDtos.add(new ProductDto(product.getTitle()));
-                }
-                return new OrderDto(
-                        order.getCustomer().getName(),
-                        order.getCustomer().getBillingAddress().getCity(),
-                        order.getCustomer().getBillingAddress().getStreet(),
-                        order.getCustomer().getShippingAddress().getCity(),
-                        order.getCustomer().getShippingAddress().getStreet(),
-                        productDtos
-                );
-            }
-        };
-        Converter immutablePersonConverter = new Converter() {
-            @Override
-            public Object convert(Class aClass, Object o) {
-                Person person = (Person) o;
-                return new ImmutablePerson(person.getName(), person.getFriends());
-            }
-        };
-        Converter userDtoConverter = new Converter() {
-            @Override
-            public Object convert(Class aClass, Object o) {
-                Person person = (Person) o;
-                return new UserDto(person.getName(), person.getFriends());
-            }
-        };
         DefaultBeanConverter beanConverter = new DefaultBeanConverter();
-        ConvertUtils.register(orderConverter, OrderDto.class);
         ConvertUtils.register(beanConverter, PersonDto.class);
-        ConvertUtils.register(userDtoConverter, UserDto.class);
-        ConvertUtils.register(immutablePersonConverter, ImmutablePerson.class);
     }
 
     public OrderDto toDto(Order order) {

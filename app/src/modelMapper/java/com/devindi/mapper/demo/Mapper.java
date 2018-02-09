@@ -23,21 +23,21 @@ public class Mapper {
 
     public Mapper() {
         modelMapper = new ModelMapper();
-//        modelMapper.addMappings(new PropertyMap<Order, OrderDto>() {
-//            @Override
-//            protected void configure() {
-//                map().setBillingStreet(source.getCustomer().getBillingAddress().getStreet());
-//                map().setBillingCity(source.getCustomer().getBillingAddress().getCity());
-//                map().setShippingStreet(source.getCustomer().getShippingAddress().getStreet());
-//                map().setShippingCity(source.getCustomer().getShippingAddress().getCity());
-//            }
-//        });
-//        modelMapper.addMappings(new PropertyMap<Person, UserDto>() {
-//            @Override
-//            protected void configure() {
-//                map().setLinked(source.getFriends());
-//            }
-//        });
+        modelMapper.addMappings(new PropertyMap<Order, OrderDto>() {
+            @Override
+            protected void configure() {
+                map().setBillingStreet(source.getCustomer().getBillingAddress().getStreet());
+                map().setBillingCity(source.getCustomer().getBillingAddress().getCity());
+                map().setShippingStreet(source.getCustomer().getShippingAddress().getStreet());
+                map().setShippingCity(source.getCustomer().getShippingAddress().getCity());
+            }
+        });
+        modelMapper.addMappings(new PropertyMap<Person, UserDto>() {
+            @Override
+            protected void configure() {
+                map().setLinked(source.getFriends());
+            }
+        });
         modelMapper.addMappings(new PropertyMap<Product, ProductDto>() {
             @Override
             protected void configure() {
