@@ -19,6 +19,8 @@ allprojects {
     }
 }
 
+apply plugin: 'android-reporting'
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
