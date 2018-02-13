@@ -110,67 +110,67 @@ android {
 
 dependencies {
 
-    beanUtilsCompile project(':beans-lib')
-    beanUtilsCompile ('commons-beanutils:commons-beanutils:1.9.3') {
+    beanUtilsImplementation project(':beans-lib')
+    beanUtilsImplementation ('commons-beanutils:commons-beanutils:1.9.3') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
-    springCompile ('org.springframework:spring-core:4.3.12.RELEASE') {
+    springImplementation ('org.springframework:spring-core:4.3.12.RELEASE') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
-    transmorphCompile 'net.sf.transmorph:transmorph:3.1.3'
+    transmorphImplementation 'net.sf.transmorph:transmorph:3.1.3'
 
-    ezmorphCompile project(':beans-lib')
-    ezmorphCompile ('org.kordamp.ezmorph:ezmorph:2.0.0') {
+    ezmorphImplementation project(':beans-lib')
+    ezmorphImplementation ('org.kordamp.ezmorph:ezmorph:2.0.0') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'junit', module: 'junit'
     }
 
-    morphCompile project(':beans-lib')
-    morphCompile ('net.sf.morph:morph:1.1.1') {
+    morphImplementation project(':beans-lib')
+    morphImplementation ('net.sf.morph:morph:1.1.1') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
-    beanMapperCompile project(':beans-lib')
-    beanMapperCompile files('libs/jbeanmapper-1.1.jar')
-    beanMapperCompile ('commons-digester:commons-digester:1.5') {
+    beanMapperImplementation project(':beans-lib')
+    beanMapperImplementation files('libs/jbeanmapper-1.1.jar')
+    beanMapperImplementation ('commons-digester:commons-digester:1.5') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
-    dozerCompile 'net.sf.dozer:dozer:5.5.1'
+    dozerImplementation 'net.sf.dozer:dozer:5.5.1'
 
-//    jmapperCompile 'com.googlecode.jmapper-framework:jmapper-core:1.6.0'
+//    jmapperImplementation 'com.googlecode.jmapper-framework:jmapper-core:1.6.0'
 
-    mergerCompile project(':beans-lib')
-    mergerCompile ('net.sf.brunneng.jom:java-object-merger:0.8.5.1') {
+    mergerImplementation project(':beans-lib')
+    mergerImplementation ('net.sf.brunneng.jom:java-object-merger:0.8.5.1') {
         exclude group: 'commons-logging', module: 'commons-logging'
     }
 
-    gedaCompile 'com.inspire-software.lib.dto.geda:geda.core:3.1.1'
-    gedaCompile 'org.slf4j:slf4j-log4j12:1.7.25'
+    gedaImplementation 'com.inspire-software.lib.dto.geda:geda.core:3.1.1'
+    gedaImplementation 'org.slf4j:slf4j-log4j12:1.7.25'
 
-    mapStructCompile 'org.mapstruct:mapstruct-jdk8:1.2.0.Final'
+    mapStructImplementation 'org.mapstruct:mapstruct-jdk8:1.2.0.Final'
     mapStructAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.2.0.Final'
 
-    mooCompile 'com.codiform:moo-core:2.0'
+    mooImplementation 'com.codiform:moo-core:2.0'
 
-//    smooksCompile 'org.milyn:milyn-smooks-all:1.7.0'
+//    smooksImplementation 'org.milyn:milyn-smooks-all:1.7.0'
 
-    orikaCompile project(':beans-lib')
-    orikaCompile 'ma.glasnost.orika:orika-core:1.5.2'
+    orikaImplementation project(':beans-lib')
+    orikaImplementation 'ma.glasnost.orika:orika-core:1.5.2'
 
-    nominCompile project(':beans-lib')
-    nominCompile 'net.sf.nomin:nomin:1.1.3'
+    nominImplementation project(':beans-lib')
+    nominImplementation 'net.sf.nomin:nomin:1.1.3'
 
-    modelMapperCompile 'org.modelmapper:modelmapper:1.1.2'
+    modelMapperImplementation 'org.modelmapper:modelmapper:1.1.2'
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'commons-logging:commons-logging:1.2'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'commons-logging:commons-logging:1.2'
 
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support:support-annotations:25.3.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+    androidTestImplementation 'com.android.support:support-annotations:25.3.1'
 }
 
 project.gradle.taskGraph.whenReady {
