@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Mapper {
 
-    OrderDto toDto(Order order) {
+    public OrderDto toDto(Order order) {
         List<ProductDto> productDtos = new ArrayList<>();
         for (Product product : order.getProducts()) {
             productDtos.add(new ProductDto(product.getTitle()));

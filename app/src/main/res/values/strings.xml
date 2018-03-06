@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MappingDemo</string>
+    <string name="simple_mapping_title">Simple mapping</string>
+    <string name="rename_mapping_title">Rename mapping</string>
+    <string name="order_mapping_title">Order mapping</string>
 </resources>
