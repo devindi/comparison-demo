@@ -58,7 +58,7 @@ public class Mapper {
     public Mapper() {
     }
 
-    OrderDto toDto(Order order) {
+    public OrderDto toDto(Order order) {
         return orderDtoConverter.convert(order);
     }
 

@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MappingDemo.iml" filepath="$PROJECT_DIR$/MappingDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/beans-lib/beans-lib.iml" filepath="$PROJECT_DIR$/beans-lib/beans-lib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/comparison-demo.iml" filepath="$PROJECT_DIR$/comparison-demo.iml" />
     </modules>
   </component>
 </project>
