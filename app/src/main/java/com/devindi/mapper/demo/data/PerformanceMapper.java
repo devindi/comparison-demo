@@ -11,6 +11,7 @@ import com.devindi.mapper.demo.model.simple.Person;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by devindi on 06.03.18.
@@ -60,9 +61,9 @@ public class PerformanceMapper {
 
     private void measuredRun(String title, int size, Runnable runnable) {
         try {
-            long start = System.currentTimeMillis();
+            long start = System.nanoTime();
             runnable.run();
-            long duration = System.currentTimeMillis() - start;
+            long duration = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
             try {
                 logger.logDuration(title, size, duration);
             } catch (IOException loggerExc) {
