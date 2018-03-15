@@ -2,6 +2,20 @@ package com.devindi.mapper.demo.model.complex;
 
 import java.util.List;
 
+/**
+ * @startuml
+ * !include Product.java
+ * !include Customer.java
+ *
+ * class Order {
+ *     -Customer customer
+ *     -List<Product> products
+ * }
+ *
+ * Order "1" *--> "*" Product
+ * Order "1" *--> "1" Customer
+ * @enduml
+ */
 public class Order {
 
     private final Customer customer;

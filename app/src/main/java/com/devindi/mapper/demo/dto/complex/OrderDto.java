@@ -2,6 +2,21 @@ package com.devindi.mapper.demo.dto.complex;
 
 import java.util.List;
 
+/**
+ * @startuml
+ * !include ProductDto.java
+ * class OrderDto {
+ *     -String customerName
+ *     -String billingCity
+ *     -String billingStreet
+ *     -String shippingCity
+ *     -String shippingStreet
+ *     -List<ProductDto> products
+ * }
+ *
+ * OrderDto "1" *--> "*" ProductDto
+ * @enduml
+ */
 public class OrderDto {
 
     private String customerName;

@@ -1,5 +1,13 @@
 package com.devindi.mapper.demo.model.complex;
 
+/**
+ * @startuml
+ * class Address {
+ *     -String city
+ *     -String street
+ * }
+ * @enduml
+ */
 public class Address {
 
     private String city;

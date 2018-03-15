@@ -1,5 +1,12 @@
 package com.devindi.mapper.demo.dto.complex;
 
+/**
+ * @startuml
+ * class ProductDto {
+ *     -String name
+ * }
+ * @enduml
+ */
 public class ProductDto {
 
     private String name;

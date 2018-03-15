@@ -1,6 +1,12 @@
 package com.devindi.mapper.demo.model.complex;
 
-
+/**
+ * @startuml
+ * class Product {
+ *     -String title
+ * }
+ * @enduml
+ */
 public class Product {
 
     private final String title;

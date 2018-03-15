@@ -2,6 +2,14 @@ package com.devindi.mapper.demo.model.simple;
 
 import java.util.List;
 
+/**
+ * @startuml
+ * class Person {
+ *     -String name
+ *     -List<String> friends
+ * }
+ * @enduml
+ */
 public class Person {
 
     private String name;

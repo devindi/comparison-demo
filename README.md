@@ -48,7 +48,14 @@ Each mapping framework used at separate flavor.
 
 There are 3 scenarios of mapping: simple, field rename and complex.
 
-[//]: <> (todo describe scenarios with UML diagrams)
+Simple scenario is mapping between identical classes  
+![Simple UML](https://bitbucket.org/mikhin/comparison-demo/raw/f72ed17b30b1d2bc2a7567053b2f3485e55f3a67/uml/simple.png)
+
+Rename scenario is mapping between identical classes, but one field is renamed
+![Rename UML](https://bitbucket.org/mikhin/comparison-demo/raw/f72ed17b30b1d2bc2a7567053b2f3485e55f3a67/uml/rename.png)
+
+Complex scenario use model from [Comparison](https://github.com/jhalterman/modelmapper/blob/master/core/src/test/java/org/modelmapper/performance/Comparison.java) class from ModelMapper framework.
+![Complex UML](https://bitbucket.org/mikhin/comparison-demo/raw/f72ed17b30b1d2bc2a7567053b2f3485e55f3a67/uml/complex.png)
 
 [//]: <> (todo describe instrumented and unit tests)
 

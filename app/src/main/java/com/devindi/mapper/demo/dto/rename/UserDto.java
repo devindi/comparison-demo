@@ -2,6 +2,14 @@ package com.devindi.mapper.demo.dto.rename;
 
 import java.util.List;
 
+/**
+ * @startuml
+ * class UserDto {
+ *     -String name
+ *     -String<String> linked
+ * }
+ * @enduml
+ */
 public class UserDto {
 
     private String name;

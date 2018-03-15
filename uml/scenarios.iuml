@@ -1,0 +1,20 @@
+simple
+@startuml
+hide empty methods
+!include ../app/src/main/java/com/devindi/mapper/demo/model/simple/Person.java
+!include ../app/src/main/java/com/devindi/mapper/demo/dto/simple/PersonDto.java
+@enduml
+
+rename
+@startuml
+hide empty methods
+!include ../app/src/main/java/com/devindi/mapper/demo/model/simple/Person.java
+!include ../app/src/main/java/com/devindi/mapper/demo/dto/rename/UserDto.java
+@enduml
+
+complex
+@startuml
+hide empty methods
+!include ../app/src/main/java/com/devindi/mapper/demo/model/complex/Order.java
+!include ../app/src/main/java/com/devindi/mapper/demo/dto/complex/OrderDto.java
+@enduml

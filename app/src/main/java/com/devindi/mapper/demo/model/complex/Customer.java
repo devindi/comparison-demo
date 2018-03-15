@@ -1,5 +1,18 @@
 package com.devindi.mapper.demo.model.complex;
 
+/**
+ * @startuml
+ * !include Address.java
+ *
+ * class Customer {
+ *     -String name
+ *     -Address shippingAddress
+ *     -Address billingAddress
+ * }
+ *
+ * Customer "1" *--> "1" Address
+ * @enduml
+ */
 public class Customer {
 
     private String name;

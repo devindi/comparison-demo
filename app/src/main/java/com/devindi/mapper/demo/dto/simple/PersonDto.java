@@ -2,6 +2,14 @@ package com.devindi.mapper.demo.dto.simple;
 
 import java.util.List;
 
+/**
+ * @startuml
+ * class PersonDto {
+ *     -String name
+ *     -List<String> friends
+ * }
+ * @enduml
+ */
 public class PersonDto {
 
     private String name;
