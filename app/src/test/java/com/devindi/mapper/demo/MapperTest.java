@@ -11,6 +11,7 @@ import com.devindi.mapper.demo.model.complex.Product;
 import com.devindi.mapper.demo.model.simple.Person;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -180,6 +181,7 @@ public class MapperTest {
     }
 
     @Test
+    @Ignore
     public void immutableName() {
         Person person = new Person("John", Arrays.asList("Mycroft", "Sherlock"));
 
@@ -189,6 +191,7 @@ public class MapperTest {
     }
 
     @Test
+    @Ignore
     public void immutableFriends() {
         Person person = new Person("John", Arrays.asList("Mycroft", "Sherlock"));
 
