@@ -68,10 +68,6 @@ android {
                 dimension "mapper"
             }
 
-            omapper {
-                dimension "mapper"
-            }
-
             jmapper {
                 dimension "mapper"
             }

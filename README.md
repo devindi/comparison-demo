@@ -31,7 +31,6 @@ Each mapping framework used at separate flavor.
 * [EZMorph](http://ezmorph.sourceforge.net/)
 * [Morph](http://morph.sourceforge.net/)
 * [Dozer](http://dozer.sourceforge.net/)
-* [OMapper](https://code.google.com/archive/p/omapper/) !Not implemented! !remove!
 * [JMapper](https://github.com/jmapper-framework/jmapper-core)
 * [java-object-merger](https://sourceforge.net/projects/javaobjectmerger/)
 * [GeDA](http://www.inspire-software.com/confluence/display/GeDA/GeDA+-+Generic+DTO+Assembler)
