@@ -42,18 +42,7 @@ public class Mapper {
     }
 
     public OrderDto toDto(Order order) {
-        List<ProductDto> productDtos = new ArrayList<>();
-        for (Product product : order.getProducts()) {
-            productDtos.add(new ProductDto(product.getTitle()));
-        }
-        return new OrderDto(
-                order.getCustomer().getName(),
-                order.getCustomer().getBillingAddress().getCity(),
-                order.getCustomer().getBillingAddress().getStreet(),
-                order.getCustomer().getShippingAddress().getCity(),
-                order.getCustomer().getShippingAddress().getStreet(),
-                productDtos
-        );
+        return (OrderDto) Morph.convert(OrderDto.class, order);
     }
 
     public PersonDto toPersonDto(Person person) {
@@ -67,8 +56,7 @@ public class Mapper {
     }
 
     public ImmutablePerson toImmutable(Person person) {
-        //I didn't found the way to create immutable object with morph
-        return new ImmutablePerson(person.getName(), person.getFriends());
+        throw new UnsupportedOperationException();
     }
 
     private static class UserFieldsCopier extends PropertyNameMappingCopier {
