@@ -6,16 +6,11 @@ import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
 import com.devindi.mapper.demo.dto.rename.UserDto;
 import com.devindi.mapper.demo.dto.simple.PersonDto;
 import com.devindi.mapper.demo.model.complex.Order;
-import com.devindi.mapper.demo.model.complex.Product;
 import com.devindi.mapper.demo.model.simple.Person;
 
 import org.kordamp.ezmorph.MorphUtils;
 import org.kordamp.ezmorph.MorpherRegistry;
 import org.kordamp.ezmorph.bean.BeanMorpher;
-import org.kordamp.ezmorph.object.AbstractObjectMorpher;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Mapper {
 
@@ -25,6 +20,9 @@ public class Mapper {
         morpherRegistry = new MorpherRegistry();
         MorphUtils.registerStandardMorphers(morpherRegistry);
         morpherRegistry.registerMorpher(new BeanMorpher(PersonDto.class, morpherRegistry));
+        morpherRegistry.registerMorpher(new BeanMorpher(UserDto.class, morpherRegistry));
+        morpherRegistry.registerMorpher(new BeanMorpher(OrderDto.class, morpherRegistry));
+        morpherRegistry.registerMorpher(new BeanMorpher(ProductDto.class, morpherRegistry));
     }
 
     public OrderDto toDto(Order order) {
@@ -40,6 +38,6 @@ public class Mapper {
     }
 
     public ImmutablePerson toImmutable(Person person) {
-        return (ImmutablePerson) morpherRegistry.morph(ImmutablePerson.class, person);
+        throw new UnsupportedOperationException();
     }
 }
