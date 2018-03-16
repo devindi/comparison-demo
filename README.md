@@ -40,7 +40,6 @@ Each mapping framework used at separate flavor.
 * [MOO](https://github.com/geoffreywiseman/Moo)
 * [Smooks](http://www.smooks.org/)
 * [Orika](http://orika-mapper.github.io/orika-docs/)
-* [ModelBridge]() !UNKNOWN! !REMOVE IT!
 * [Nomin](http://nomin.sourceforge.net/)
 * [ModelMapper](http://modelmapper.org/)
 

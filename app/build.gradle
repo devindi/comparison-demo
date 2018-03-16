@@ -104,10 +104,6 @@ android {
                 dimension "mapper"
             }
 
-            modelBridge {
-                dimension "mapper"
-            }
-
             nomin {
                 dimension "mapper"
             }
