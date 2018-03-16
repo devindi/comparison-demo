@@ -7,28 +7,12 @@ import com.devindi.mapper.demo.dto.simple.PersonDto;
 import com.devindi.mapper.demo.model.complex.Order;
 import com.devindi.mapper.demo.model.simple.Person;
 
-import org.jbeanmapper.BeanConverter;
 import org.jbeanmapper.BeanMapper;
 import org.jbeanmapper.BeanMapping;
 import org.jbeanmapper.BeanMappingException;
 import org.jbeanmapper.DefaultBeanConverter;
 import org.jbeanmapper.DefaultPropertyMapper;
-import org.jbeanmapper.MappingContext;
-import org.jbeanmapper.PropertyMapper;
 import org.jbeanmapper.PropertyMapping;
-import org.jbeanmapper.PropertyMappingException;
-import org.jbeanmapper.creator.BeanCreator;
-import org.xml.sax.InputSource;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Mapper {
 
@@ -47,12 +31,10 @@ public class Mapper {
         commons = new BeanMapper();
     }
 
+    //JBeanMapper doesn't support property mapping from nested property eg customer.name -> customerName
+    //but vice-verse is supported
     public OrderDto toDto(Order order) {
-        try {
-            return (OrderDto) commons.map(order, OrderDto.class);
-        } catch (BeanMappingException e) {
-            throw new RuntimeException(e);
-        }
+        throw new UnsupportedOperationException();
     }
 
     public PersonDto toPersonDto(Person person) {
@@ -71,8 +53,9 @@ public class Mapper {
         }
     }
 
+    //JBeanMapper doesn't support mapping to immutable
     public ImmutablePerson toImmutable(Person person) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     private PropertyMapping createPropertyMapping(String source, String target) {
