@@ -6,7 +6,6 @@ import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
 import com.devindi.mapper.demo.dto.rename.UserDto;
 import com.devindi.mapper.demo.dto.simple.PersonDto;
 import com.devindi.mapper.demo.model.complex.Order;
-import com.devindi.mapper.demo.model.complex.Product;
 import com.devindi.mapper.demo.model.simple.Person;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -14,14 +13,15 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Mapper {
 
     public Mapper() {
         DefaultBeanConverter beanConverter = new DefaultBeanConverter();
         ConvertUtils.register(beanConverter, PersonDto.class);
+        ConvertUtils.register(beanConverter, UserDto.class);
+        ConvertUtils.register(beanConverter, OrderDto.class);
+        ConvertUtils.register(beanConverter, ProductDto.class);
     }
 
     public OrderDto toDto(Order order) {
