@@ -6,18 +6,28 @@ Benchmark demonstrate mapping frameworks usage on Android.
 
 ## Launch the benchmark
 
-_Requirements: JDK 8 (I didn't try to run on other version), connected Android device(emulator or real)_
+_Requirements: JDK 8 (I didn't try to run on other version), connected Android device(emulator or real)_   
 
-[//]: <> (todo update repo url after publishing)
-`git clone {REPO_URL}` 
+### Method count benchmark
+
+`./gradlew clean assemble | grep "Total methods" >> methods`
+
+Detailed method count will be written as text and graph under `${buildDir}/outputs/dexcount/${variant}`
+
+
+### APK size benchmark
+
+`./gradlew clean assemble | grep "Total APK Size" >> size`
+
+### Performance benchmark
 
 `./gradlew connectedCheck`
 
 Results will be written to file at device (`{EXTERNAL_STORAGE}/perfRes}`, see `com.devindi.mapper.demo.data.PerformanceLogger` for details)
 
-[//]: <> (todo how to run specified test on specified mapper)
-[//]: <> (todo how to static measurements with grep)
-[//]: <> (todo how to open test result pages)
+To run performance benchmark on specified mapper run task `connected{maper}DebugAndroidTest`. To see list of available tasks run: `./gradlew tasks | grep connected`
+
+To run android tests and open failure reports for each flavor run `./gradlew connectedCheck | grep file: | cut -c 46- | xargs open`
 
 ## Benchmark structure
 
@@ -49,13 +59,11 @@ There are 3 scenarios of mapping: simple, field rename and complex.
 Simple scenario is mapping between identical classes  
 ![Simple UML](https://bitbucket.org/mikhin/comparison-demo/raw/f72ed17b30b1d2bc2a7567053b2f3485e55f3a67/uml/simple.png)
 
-Rename scenario is mapping between identical classes, but one field is renamed
+Rename scenario is mapping between identical classes, but one field is renamed  
 ![Rename UML](https://bitbucket.org/mikhin/comparison-demo/raw/f72ed17b30b1d2bc2a7567053b2f3485e55f3a67/uml/rename.png)
 
-Complex scenario use model from [Comparison](https://github.com/jhalterman/modelmapper/blob/master/core/src/test/java/org/modelmapper/performance/Comparison.java) class from ModelMapper framework.
+Complex scenario use model from [Comparison](https://github.com/jhalterman/modelmapper/blob/master/core/src/test/java/org/modelmapper/performance/Comparison.java) class from ModelMapper framework.  
 ![Complex UML](https://bitbucket.org/mikhin/comparison-demo/raw/f72ed17b30b1d2bc2a7567053b2f3485e55f3a67/uml/complex.png)
-
-[//]: <> (todo describe instrumented and unit tests)
 
 ## Benchmark criteria list
 
@@ -64,5 +72,17 @@ Complex scenario use model from [Comparison](https://github.com/jhalterman/model
 * size of mapper (`com.devindi.mapper.demo.Mapper`) class (LoC)
 * time to perform mapping
 
-[//]: <> (todo credits, contributing, result)
+## Benchmarks results
+
+## Credits
+
+* [Object mapper benchmark](https://github.com/arey/java-object-mapper-benchmark)
+* Java mapping for pragmatic programmer (Conference talk, Russian. [youtube](https://www.youtube.com/watch?v=8Rx5gKURmT0),[pdf](http://2013.jokerconf.com/presentations/java_mapping_dlya_pragmatichnyh_programmistov_-_45_mins_-_joker.pdf))
+* [Method count plugin](https://github.com/KeepSafe/dexcount-gradle-plugin)
+* [APK size plugin](https://github.com/vanniktech/gradle-android-apk-size-plugin)
+* [UML diagram renderer](http://plantuml.com/)
+
+## Contributing
+
+You are welcome to add more mappers (eg OTOM, OMapper) and improve existing mappers usage
 
