@@ -12,35 +12,45 @@ import java.util.Locale;
  */
 public class PerformanceLogger {
 
+    //mapper title, mapping method, number of calls, mapping duration, message
+    private static final String ENTRY_FORMAT = "%s;%s;%d;%d;%s";
+
     private final String mapperTitle;
     private final String outputFilePath;
 
-    public PerformanceLogger(String mapperTitle, String outputFilePath) {
+    private File outFile;
+
+    public PerformanceLogger(String mapperTitle, String outputFilePath) throws IOException {
         this.mapperTitle = mapperTitle;
         this.outputFilePath = outputFilePath;
+        init();
+    }
+
+    public void init() throws IOException {
+        outFile = new File(outputFilePath);
+        if (!outFile.exists()) {
+            if (!outFile.createNewFile()) {
+                throw new IOException("Failed to create output file");
+            }
+        }
     }
 
     public void logDuration(String method, int loopCount, long duration) throws IOException {
-        String entry = String.format(Locale.US, "%s - %s - %d times in %s millis", mapperTitle, method, loopCount, duration);
+        String entry = String.format(Locale.US, ENTRY_FORMAT, mapperTitle, method, loopCount, duration, null);
         writeLogEntry(entry);
     }
 
     public void logException(String method, Exception exc) throws IOException {
-        String entry = String.format(Locale.US, "%s - %s - failed due to %s", mapperTitle, method, exc.getClass().getSimpleName());
+        String entry = String.format(Locale.US, ENTRY_FORMAT, mapperTitle, method, -1, -1, exc.getClass().getSimpleName());
         writeLogEntry(entry);
     }
 
     private void writeLogEntry(String msg) throws IOException {
         Log.d("perf", msg);
-        File outfile = new File(outputFilePath);
-        if (!outfile.exists()) {
-            if (!outfile.createNewFile()) {
-                throw new IOException("Failed to create output file");
-            }
-        }
+
         FileOutputStream stream = null;
         try {
-            stream = new FileOutputStream(outfile, true);
+            stream = new FileOutputStream(outFile, true);
             stream.write(msg.getBytes("UTF-8"));
             stream.write("\n".getBytes("UTF-8"));
         } finally {

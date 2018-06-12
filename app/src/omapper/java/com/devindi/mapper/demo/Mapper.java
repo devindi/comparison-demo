@@ -18,18 +18,18 @@ public class Mapper {
     }
 
     public OrderDto toDto(Order order) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public PersonDto toPersonDto(Person person) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public UserDto toUserDto(Person person) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     public ImmutablePerson toImmutable(Person person) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 }

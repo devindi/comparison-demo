@@ -5,6 +5,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.rule.GrantPermissionRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,11 +31,13 @@ public class ClickPerfTest {
     }
 
     @Test
+    @Ignore
     public void renameMappingTest() {
         onView(withId(R.id.btn_rename)).perform(click());
     }
 
     @Test
+    @Ignore
     public void complexMappingTest() {
         onView(withId(R.id.btn_order)).perform(click());
     }

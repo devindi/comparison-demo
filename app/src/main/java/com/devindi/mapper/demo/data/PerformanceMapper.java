@@ -11,6 +11,7 @@ import com.devindi.mapper.demo.model.simple.Person;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,48 +28,49 @@ public class PerformanceMapper {
     }
 
     public void toPersonDto(final List<Person> source, final List<PersonDto> target) {
-        measuredRun("simple", source.size(), new Runnable() {
-            @Override
-            public void run() {
-                for (Person person : source) {
-                    target.add(impl.toPersonDto(person));
+        for (final Person person : source) {
+            target.add(measuredRun("simple", 1, new Callable<PersonDto>() {
+                @Override
+                public PersonDto call() {
+                    return impl.toPersonDto(person);
                 }
-            }
-        });
+            }));
+        }
     }
 
     public void toUserDto(final List<Person> source, final List<UserDto> target) {
-        measuredRun("rename", source.size(), new Runnable() {
-            @Override
-            public void run() {
-                for (Person person : source) {
-                    target.add(impl.toUserDto(person));
+        for (final Person person : source) {
+            target.add(measuredRun("rename", 1, new Callable<UserDto>() {
+                @Override
+                public UserDto call() {
+                    return impl.toUserDto(person);
                 }
-            }
-        });
+            }));
+        }
     }
 
     public void toOrderDto(final List<Order> source, final List<OrderDto> target) {
-        measuredRun("order", source.size(), new Runnable() {
-            @Override
-            public void run() {
-                for (Order order : source) {
-                    target.add(impl.toDto(order));
+        for (final Order order : source) {
+            target.add(measuredRun("order", 1, new Callable<OrderDto>() {
+                @Override
+                public OrderDto call() {
+                    return impl.toDto(order);
                 }
-            }
-        });
+            }));
+        }
     }
 
-    private void measuredRun(String title, int size, Runnable runnable) {
+    private <T> T measuredRun(String title, int size, Callable<T> runnable) {
         try {
             long start = System.nanoTime();
-            runnable.run();
-            long duration = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
+            T result = runnable.call();
+            long duration = TimeUnit.NANOSECONDS.toNanos(System.nanoTime() - start);
             try {
                 logger.logDuration(title, size, duration);
             } catch (IOException loggerExc) {
                 throw new RuntimeException(loggerExc);
             }
+            return result;
         } catch (Exception e) {
             try {
                 logger.logException(title, e);
@@ -77,7 +79,7 @@ public class PerformanceMapper {
                     e.addSuppressed(ioExc);
                 }
             }
-            throw e;
+            throw new RuntimeException(e);
         }
     }
 }

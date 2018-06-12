@@ -18,8 +18,10 @@ import com.devindi.mapper.demo.model.complex.Order;
 import com.devindi.mapper.demo.model.simple.Person;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 public class BenchmarkActivity extends Activity {
 
@@ -39,15 +41,21 @@ public class BenchmarkActivity extends Activity {
         findViewById(R.id.btn_rename).setOnClickListener(buttonsListener);
         findViewById(R.id.btn_order).setOnClickListener(buttonsListener);
 
-        mapper = new PerformanceMapper(new Mapper(), new PerformanceLogger(BuildConfig.FLAVOR, new File(Environment.getExternalStorageDirectory(), "perfRes").getAbsolutePath()));
+        setTitle(getString(R.string.app_name) + " " + BuildConfig.FLAVOR);
+
+        try {
+            mapper = new PerformanceMapper(new Mapper(), new PerformanceLogger(BuildConfig.FLAVOR, new File(Environment.getExternalStorageDirectory(), String.format(Locale.US, "perfRes-%d", 10_000)).getAbsolutePath()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Provider provider = new Provider();
 
         persons = new LinkedList<>();
-        for (int i = 0; i < 1_000; i++) {
+        for (int i = 0; i < 100; i++) {
             persons.add(provider.getPerson(50));
         }
         orders = new LinkedList<>();
-        for (int i = 0; i < 1_000; i++) {
+        for (int i = 0; i < 100; i++) {
             orders.add(provider.getOrder(50));
         }
     }

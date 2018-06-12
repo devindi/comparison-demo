@@ -10,7 +10,8 @@ def ignoredMappers = [
         'moo',          //runtime error
         'orika',        //runtime error
         'nomin',        //runtime error
-        'modelMapper'   //runtime error
+        'modelMapper',   //runtime error
+        'omapper'       //not implemented
 ]
 
 android {
