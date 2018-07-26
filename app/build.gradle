@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.vanniktech.android.apk.size'
+apply plugin: 'com.jakewharton.hugo'
 
 def ignoredMappers = [
         'jmapper',      //couldn't dex

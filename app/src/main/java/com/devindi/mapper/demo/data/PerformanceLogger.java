@@ -8,25 +8,27 @@ import java.io.IOException;
 import java.util.Locale;
 
 /**
- * Created by devindi on 06.03.18.
+ * Created by devindi
  */
 public class PerformanceLogger {
 
-    //mapper title, mapping method, number of calls, mapping duration, message
-    private static final String ENTRY_FORMAT = "%s;%s;%d;%d;%s";
+    //device, mapper title, mapping method, mapping duration
+    private static final String ENTRY_FORMAT = "%s;%s;%s;%d";
 
     private final String mapperTitle;
     private final String outputFilePath;
+    private final String deviceName;
 
     private File outFile;
 
-    public PerformanceLogger(String mapperTitle, String outputFilePath) throws IOException {
+    public PerformanceLogger(String deviceName, String mapperTitle, String outputFilePath) throws IOException {
         this.mapperTitle = mapperTitle;
         this.outputFilePath = outputFilePath;
+        this.deviceName = deviceName;
         init();
     }
 
-    public void init() throws IOException {
+    private void init() throws IOException {
         outFile = new File(outputFilePath);
         if (!outFile.exists()) {
             if (!outFile.createNewFile()) {
@@ -35,19 +37,16 @@ public class PerformanceLogger {
         }
     }
 
-    public void logDuration(String method, int loopCount, long duration) throws IOException {
-        String entry = String.format(Locale.US, ENTRY_FORMAT, mapperTitle, method, loopCount, duration, null);
+    public void logDuration(String method, long duration) throws IOException {
+        String entry = String.format(Locale.US, ENTRY_FORMAT, deviceName, mapperTitle, method, duration);
         writeLogEntry(entry);
     }
 
-    public void logException(String method, Exception exc) throws IOException {
-        String entry = String.format(Locale.US, ENTRY_FORMAT, mapperTitle, method, -1, -1, exc.getClass().getSimpleName());
-        writeLogEntry(entry);
+    public void logException(String method) throws IOException {
+        logDuration(method, -1);
     }
 
     private void writeLogEntry(String msg) throws IOException {
-        Log.d("perf", msg);
-
         FileOutputStream stream = null;
         try {
             stream = new FileOutputStream(outFile, true);

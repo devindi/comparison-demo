@@ -14,8 +14,9 @@ import com.devindi.mapper.demo.model.simple.Person;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
+    @Override
     public OrderDto toDto(Order order) {
         List<ProductDto> productDtos = new ArrayList<>();
         for (Product product : order.getProducts()) {
@@ -31,10 +32,12 @@ public class Mapper {
         );
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         return new PersonDto(person.getName(), person.getFriends());
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         return new UserDto(person.getName(), person.getFriends());
     }

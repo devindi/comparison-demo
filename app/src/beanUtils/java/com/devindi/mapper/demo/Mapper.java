@@ -1,12 +1,10 @@
 package com.devindi.mapper.demo;
 
 import com.devindi.mapper.demo.dto.complex.OrderDto;
-import com.devindi.mapper.demo.dto.complex.ProductDto;
 import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
 import com.devindi.mapper.demo.dto.rename.UserDto;
 import com.devindi.mapper.demo.dto.simple.PersonDto;
 import com.devindi.mapper.demo.model.complex.Order;
-import com.devindi.mapper.demo.model.complex.Product;
 import com.devindi.mapper.demo.model.simple.Person;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -14,26 +12,27 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
     public Mapper() {
         DefaultBeanConverter beanConverter = new DefaultBeanConverter();
         ConvertUtils.register(beanConverter, PersonDto.class);
     }
 
+    @Override
     public OrderDto toDto(Order order) {
         Converter converter = ConvertUtils.lookup(OrderDto.class);
         return (OrderDto) converter.convert(OrderDto.class, order);
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         Converter converter = ConvertUtils.lookup(PersonDto.class);
         return (PersonDto) converter.convert(PersonDto.class, person);
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         Converter converter = ConvertUtils.lookup(UserDto.class);
         return (UserDto) converter.convert(UserDto.class, person);
