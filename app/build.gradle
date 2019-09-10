@@ -3,14 +3,14 @@ apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'com.vanniktech.android.apk.size'
 
 def ignoredMappers = [
-        'jmapper',      //couldn't dex
-        'smooks',       //broken dependency
-        'dozer',        //runtime error
-        'geda',         //runtime error
-        'moo',          //runtime error
-        'orika',        //runtime error
-        'nomin',        //runtime error
-        'modelMapper'   //runtime error
+//        'jmapper',      //couldn't dex
+//        'smooks',       //broken dependency
+//        'dozer',        //runtime error
+//        'geda',         //runtime error
+//        'moo',          //runtime error
+//        'orika',        //runtime error
+//        'nomin',        //runtime error
+//        'modelMapper'   //runtime error
 ]
 
 android {

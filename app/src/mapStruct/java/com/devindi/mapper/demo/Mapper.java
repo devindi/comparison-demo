@@ -35,6 +35,6 @@ public class Mapper {
     }
 
     public ImmutablePerson toImmutable(Person person) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 }
