@@ -35,85 +35,85 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
 
-        flavorDimensions "mapper"
+    flavorDimensions "mapper"
 
-        productFlavors {
+    productFlavors {
 
-            manual {
-                dimension "mapper"
-            }
+        manual {
+            dimension "mapper"
+        }
 
-            beanUtils {
-                dimension "mapper"
-            }
+        beanUtils {
+            dimension "mapper"
+        }
 
-            spring {
-                dimension "mapper"
-            }
+        spring {
+            dimension "mapper"
+        }
 
-            transmorph {
-                dimension "mapper"
-            }
+        transmorph {
+            dimension "mapper"
+        }
 
-            ezmorph {
-                dimension "mapper"
-            }
+        ezmorph {
+            dimension "mapper"
+        }
 
-            morph {
-                dimension "mapper"
-            }
+        morph {
+            dimension "mapper"
+        }
 
-            dozer {
-                dimension "mapper"
-            }
+        dozer {
+            dimension "mapper"
+        }
 
-            jmapper {
-                dimension "mapper"
-            }
+        jmapper {
+            dimension "mapper"
+        }
 
-            merger {
-                dimension "mapper"
-            }
+        merger {
+            dimension "mapper"
+        }
 
-            geda {
-                dimension "mapper"
-            }
+        geda {
+            dimension "mapper"
+        }
 
-            beanMapper {
-                dimension "mapper"
-            }
+        beanMapper {
+            dimension "mapper"
+        }
 
-            mapStruct {
-                dimension "mapper"
-            }
+        mapStruct {
+            dimension "mapper"
+        }
 
-            moo {
-                dimension "mapper"
-            }
+        moo {
+            dimension "mapper"
+        }
 
-            smooks {
-                dimension "mapper"
-            }
+        smooks {
+            dimension "mapper"
+        }
 
-            orika {
-                dimension "mapper"
-            }
+        orika {
+            dimension "mapper"
+        }
 
-            nomin {
-                dimension "mapper"
-            }
+        nomin {
+            dimension "mapper"
+        }
 
-            modelMapper {
-                dimension "mapper"
-            }
+        modelMapper {
+            dimension "mapper"
         }
     }
 
     variantFilter {
         variant ->
             def names = variant.flavors*.name
-            def isIgnored = names.any { ignoredMappers.contains( it ) }
+            def isIgnored = names.any { ignoredMappers.contains( it ) } || variant.buildType.name == "release"
             if (isIgnored) {
                 variant.setIgnore(isIgnored)
             }
