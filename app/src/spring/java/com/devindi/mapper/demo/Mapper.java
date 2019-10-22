@@ -1,23 +1,21 @@
 package com.devindi.mapper.demo;
 
+import com.devindi.mapper.demo.data.IMapper;
 import com.devindi.mapper.demo.dto.complex.OrderDto;
 import com.devindi.mapper.demo.dto.complex.ProductDto;
 import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
 import com.devindi.mapper.demo.dto.rename.UserDto;
 import com.devindi.mapper.demo.dto.simple.PersonDto;
-import com.devindi.mapper.demo.model.complex.Address;
-import com.devindi.mapper.demo.model.complex.Customer;
 import com.devindi.mapper.demo.model.complex.Order;
 import com.devindi.mapper.demo.model.complex.Product;
 import com.devindi.mapper.demo.model.simple.Person;
 
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.core.convert.converter.ConverterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
     private final Converter<Person, PersonDto> personDtoConverter = new Converter<Person, PersonDto>() {
         @Override
@@ -58,18 +56,22 @@ public class Mapper {
     public Mapper() {
     }
 
+    @Override
     public OrderDto toDto(Order order) {
         return orderDtoConverter.convert(order);
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         return personDtoConverter.convert(person);
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         return userDtoConverter.convert(person);
     }
 
+    @Override
     public ImmutablePerson toImmutable(Person person) {
         return immutablePersonConverter.convert(person);
     }

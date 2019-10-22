@@ -1,5 +1,6 @@
 package com.devindi.mapper.demo;
 
+import com.devindi.mapper.demo.data.IMapper;
 import com.devindi.mapper.demo.dto.complex.OrderDto;
 import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
 import com.devindi.mapper.demo.dto.rename.UserDto;
@@ -14,7 +15,7 @@ import org.jbeanmapper.DefaultBeanConverter;
 import org.jbeanmapper.DefaultPropertyMapper;
 import org.jbeanmapper.PropertyMapping;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
     private final BeanMapper personToUser;
     private final BeanMapper commons;
@@ -33,10 +34,12 @@ public class Mapper {
 
     //JBeanMapper doesn't support property mapping from nested property eg customer.name -> customerName
     //but vice-verse is supported
+    @Override
     public OrderDto toDto(Order order) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         try {
             return (PersonDto) commons.map(person, PersonDto.class);
@@ -45,6 +48,7 @@ public class Mapper {
         }
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         try {
             return (UserDto) personToUser.map(person);
@@ -53,7 +57,7 @@ public class Mapper {
         }
     }
 
-    //JBeanMapper doesn't support mapping to immutable
+    @Override
     public ImmutablePerson toImmutable(Person person) {
         throw new UnsupportedOperationException();
     }

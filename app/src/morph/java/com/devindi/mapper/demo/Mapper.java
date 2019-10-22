@@ -1,5 +1,6 @@
 package com.devindi.mapper.demo;
 
+import com.devindi.mapper.demo.data.IMapper;
 import com.devindi.mapper.demo.dto.complex.OrderDto;
 import com.devindi.mapper.demo.dto.complex.ProductDto;
 import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
     private SimpleDelegatingTransformer graphTransformer;
 
@@ -41,20 +42,24 @@ public class Mapper {
         graphTransformer.setComponents(transformerArray);
     }
 
+    @Override
     public OrderDto toDto(Order order) {
         return (OrderDto) Morph.convert(OrderDto.class, order);
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         return (PersonDto) Morph.convert(PersonDto.class, person);
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         UserDto dto = new UserDto();
         graphTransformer.copy(dto, person);
         return dto;
     }
 
+    @Override
     public ImmutablePerson toImmutable(Person person) {
         throw new UnsupportedOperationException();
     }

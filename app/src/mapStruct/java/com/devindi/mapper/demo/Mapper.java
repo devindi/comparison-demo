@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Mapper {
+public class Mapper implements com.devindi.mapper.demo.data.IMapper {
 
     private IMapper impl;
 
@@ -22,18 +22,22 @@ public class Mapper {
         impl = Mappers.getMapper(IMapper.class);
     }
 
+    @Override
     public OrderDto toDto(Order order) {
         return impl.toDto(order);
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         return impl.toPersonDto(person);
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         return impl.toUserDto(person);
     }
 
+    @Override
     public ImmutablePerson toImmutable(Person person) {
         throw new UnsupportedOperationException();
     }

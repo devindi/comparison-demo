@@ -1,5 +1,6 @@
 package com.devindi.mapper.demo;
 
+import com.devindi.mapper.demo.data.IMapper;
 import com.devindi.mapper.demo.dto.complex.OrderDto;
 import com.devindi.mapper.demo.dto.complex.ProductDto;
 import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
@@ -10,13 +11,11 @@ import com.devindi.mapper.demo.model.simple.Person;
 import com.googlecode.jmapper.JMapper;
 import com.googlecode.jmapper.api.JMapperAPI;
 import com.googlecode.jmapper.api.enums.MappingType;
-import com.googlecode.jmapper.config.JmapperLog;
-import com.googlecode.jmapper.enums.ChooseConfig;
 
 import static com.googlecode.jmapper.api.JMapperAPI.attribute;
 import static com.googlecode.jmapper.api.JMapperAPI.mappedClass;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
     private JMapper<OrderDto, Order> orderMapper;
     private JMapper<PersonDto, Person> simpleMapper;
@@ -47,19 +46,23 @@ public class Mapper {
         renameMapper = new JMapper<>(UserDto.class, Person.class, api);
     }
 
+    @Override
     public OrderDto toDto(Order order) {
         return orderMapper.getDestination(order);
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         return simpleMapper.getDestination(person);
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         return renameMapper.getDestination(person, MappingType.ALL_FIELDS);
     }
 
+    @Override
     public ImmutablePerson toImmutable(Person person) {
-        return new ImmutablePerson(person.getName(), person.getFriends());
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,5 +1,6 @@
 package com.devindi.mapper.demo;
 
+import com.devindi.mapper.demo.data.IMapper;
 import com.devindi.mapper.demo.dto.complex.OrderDto;
 import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
 import com.devindi.mapper.demo.dto.rename.UserDto;
@@ -17,25 +18,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
     public Mapper() {
     }
 
+    @Override
     public OrderDto toDto(Order order) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         PersonDto dto = new PersonDto();
         DTOAssembler.newAssembler(PersonDto.class, Person.class).assembleDto(dto, person, null, null);
         return dto;
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
     public ImmutablePerson toImmutable(Person person) {
         throw new UnsupportedOperationException();
     }

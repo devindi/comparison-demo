@@ -1,5 +1,6 @@
 package com.devindi.mapper.demo;
 
+import com.devindi.mapper.demo.data.IMapper;
 import com.devindi.mapper.demo.dto.complex.OrderDto;
 import com.devindi.mapper.demo.dto.complex.ProductDto;
 import com.devindi.mapper.demo.dto.immutable.ImmutablePerson;
@@ -12,7 +13,7 @@ import org.kordamp.ezmorph.MorphUtils;
 import org.kordamp.ezmorph.MorpherRegistry;
 import org.kordamp.ezmorph.bean.BeanMorpher;
 
-public class Mapper {
+public class Mapper implements IMapper {
 
     private final MorpherRegistry morpherRegistry;
 
@@ -25,18 +26,22 @@ public class Mapper {
         morpherRegistry.registerMorpher(new BeanMorpher(ProductDto.class, morpherRegistry));
     }
 
+    @Override
     public OrderDto toDto(Order order) {
         return (OrderDto) morpherRegistry.morph(OrderDto.class, order);
     }
 
+    @Override
     public PersonDto toPersonDto(Person person) {
         return (PersonDto) morpherRegistry.morph(PersonDto.class, person);
     }
 
+    @Override
     public UserDto toUserDto(Person person) {
         return (UserDto) morpherRegistry.morph(UserDto.class, person);
     }
 
+    @Override
     public ImmutablePerson toImmutable(Person person) {
         throw new UnsupportedOperationException();
     }

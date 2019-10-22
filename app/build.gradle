@@ -15,7 +15,6 @@ def ignoredMappers = [
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -118,6 +117,19 @@ android {
                 variant.setIgnore(isIgnored)
             }
     }
+
+    // open test reports in browser with next command:
+    // ./gradlew clean test | grep "Test report" | cut -c 13- | xargs open
+    // where 13 is length of "Test report " + 1
+    tasks.withType(Test) { testTask ->
+        println testTask.name
+
+        afterSuite { desc, result ->
+            if (desc.parent) return
+
+            println "Test report ${testTask.reports.html.entryPoint}"
+        }
+    }
 }
 
 dependencies {
@@ -167,9 +179,8 @@ dependencies {
 
     mooImplementation 'com.codiform:moo-core:2.0'
 
-    smooksImplementation 'org.milyn:milyn-smooks-all:1.7.0'
+    smooksImplementation 'org.milyn:milyn-smooks-all:1.7.1'
 
-    orikaImplementation project(':beans-lib')
     orikaImplementation 'ma.glasnost.orika:orika-core:1.5.2'
 
     nominImplementation project(':beans-lib')
@@ -178,7 +189,7 @@ dependencies {
     modelMapperImplementation 'org.modelmapper:modelmapper:1.1.2'
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'commons-logging:commons-logging:1.2'
+//    testImplementation 'commons-logging:commons-logging:1.2'
 
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
